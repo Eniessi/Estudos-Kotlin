@@ -35,10 +35,10 @@ class SecondFragment : Fragment() {
         val firstArgument = arguments?.getStringArray("first_arg") ?: arrayOf()
 
         lifecycleScope.launch {
-            viewModel.uiState.collect {
+            viewModel.uiState.collect { uiState ->
                 // Update UI elements
-                binding.tvSecondFragment.text = viewModel.uiState.value.rolledDiceValue.toString()
-
+                // id de drawable de dado
+                uiState.rolledDice3ImgRes?.let {imgRes -> binding.ivRolledDice3.setImageResource(imgRes)}
             }
         }
 

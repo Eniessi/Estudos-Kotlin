@@ -28,10 +28,10 @@ class MainActivity : AppCompatActivity() {
         val viewModel: DiceViewModel by viewModels()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.uiState.collect {
+                viewModel.uiState.collect { uiState ->
                     // Update UI elements
-                    binding.tvRolledDice.text = it.rolledDiceValue?.toString()
-
+                    // id de drawable de dado
+                    uiState.rolledDice1ImgRes?.let {imgRes -> binding.ivRolledDice1.setImageResource(imgRes)}
                 }
             }
         }
